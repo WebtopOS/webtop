@@ -69,20 +69,6 @@ if (params.get('dev') === 'true') {
   }
 }
 
-document.getElementById('search-button').addEventListener('click', () => {
-  const query = document.getElementById('taskbar-input').value;
-  if (query) {
-    windowManager.createWindow({
-      title: `Search: ${query}`,
-      content: `<iframe src="https://unduck.link?q=${encodeURIComponent(query)}" width="100%" height="100%" style="border:none;"></iframe>`,
-      x: 200,
-      y: 150,
-      width: 800,
-      height: 600
-    });
-  }
-});
-
 windowManager.createWindow({
   title: 'Welcome',
   content: `<iframe src="./applications/welcome.html" width="100%" height="100%" style="border:none;"></iframe>`,
