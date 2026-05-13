@@ -92,7 +92,7 @@
             gap: 12px;
         }
 
-        .app-item {
+        .task-button {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -116,7 +116,7 @@
             border-radius: 14px;
         }
 
-        .app-item svg {
+        .task-button svg {
             height: 24px;
             width: auto;
         }
@@ -130,13 +130,13 @@
             white-space: nowrap;
         }
 
-        .app-item:hover,
+        .task-button:hover,
         .launcher-item,
         .start-item:hover {
             background: rgba(255, 255, 255, 0.08);
         }
 
-        .app-item:hover .app-label {
+        .task-button:hover .app-label {
             color: var(--text-main);
         }
 
@@ -407,7 +407,7 @@
                 <input type="text" class="search-input" placeholder="Search...">
             </div>
 
-            <button class="app-item settings-btn" id="settings">
+            <button class="task-button settings-btn" id="settings">
                 <i data-lucide="sliders-horizontal"></i>
             </button>
         </div>
@@ -415,14 +415,14 @@
 
     <div class="taskbar">
         <div class="shelf-start">
-            <div class="app-item" id="apps-menu"><i data-lucide="grip"></i></div>
+            <div class="task-button" id="apps-menu"><i data-lucide="grip"></i></div>
         </div>
 
         <div class="task-list">
-            <div class="app-item"><i data-lucide="globe"></i><span class="app-label">Browser</span></div>
-            <div class="app-item"><i data-lucide="terminal"></i><span class="app-label">Terminal</span></div>
-            <div class="app-item"><i data-lucide="folder"></i><span class="app-label">Files</span></div>
-            <div class="app-item"><i data-lucide="command"></i><span class="app-label">Command</span></div>
+            <div class="task-button"><i data-lucide="globe"></i><span class="app-label">Browser</span></div>
+            <div class="task-button"><i data-lucide="terminal"></i><span class="app-label">Terminal</span></div>
+            <div class="task-button"><i data-lucide="folder"></i><span class="app-label">Files</span></div>
+            <div class="task-button"><i data-lucide="command"></i><span class="app-label">Command</span></div>
         </div>
 
         <div class="shelf-end">
