@@ -260,7 +260,7 @@ shadeWindow(id) {
       win.prevTop = win.element.style.top;
 
       win.element.style.width = '100vw';
-      win.element.style.height = `calc(100vh - var(--taskbar-height))`;
+      win.element.style.height = `calc(100vh - 48px)`;
       win.element.style.left = '0';
       win.element.style.top = '0';
     }
