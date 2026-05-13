@@ -183,7 +183,7 @@ setupWindowEvents(id, windowEl, header) {
   }
   createWindowIcon(text) {
     const button = window.parent.document.createElement('button');
-    button.className = 'task-button';
+    button.className = 'window-button';
     const image = window.parent.document.createElement('img');
     image.className = 'window-icon';
     image.src = text;
