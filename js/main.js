@@ -69,7 +69,7 @@ if (params.get('dev') === 'true') {
   }
 }
 
-WindowManager.createWindow({
+windowManager.createWindow({
   title: 'Welcome',
   content: `<iframe src="./applications/welcome.html" width="100%" height="100%" style="border:none;"></iframe>`,
   x: 100,

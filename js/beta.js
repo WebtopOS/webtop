@@ -1,6 +1,8 @@
 import { WindowManager } from './windowManager.js';
 
-WindowManager.createWindow({
+const windowManager = new WindowManager();
+
+windowManager.createWindow({
   title: 'Welcome',
   content: `<iframe src="./applications/welcome.html" width="100%" height="100%" style="border:none;"></iframe>`,
   x: 100,
