@@ -1,10 +1,6 @@
 import { WindowManager } from './windowManager.js';
-import { startMenuManager } from './startMenuManager.js';
-import { clockManager } from './clockManager.js';
 
 const windowManager = new WindowManager();
-const startMenu = startMenuManager();
-clockManager();
 
 window.getAccent = function (rgbaInput) {
   const taskbar = window.parent.document.getElementById("taskbar");
