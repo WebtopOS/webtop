@@ -52,10 +52,16 @@ export class WindowManager {
     windowEl.append(header, contentEl);
     window.parent.document.getElementById('windows').appendChild(windowEl);
 
-    const taskButton = window.parent.document.createElement('button');
-    taskButton.className = 'task-button';
-    taskButton.textContent = title;
-    this.taskList.appendChild(taskButton);
+const taskButton = window.parent.document.createElement('button');
+taskButton.className = 'task-button';
+
+const appLabel = window.parent.document.createElement('span');
+appLabel.className = 'app-label';
+appLabel.textContent = title;
+
+taskButton.appendChild(appLabel);
+
+this.taskList.appendChild(taskButton);
 
     const windowData = {
       element: windowEl,
