@@ -279,6 +279,78 @@
         .settings-btn:hover {
             background: #333;
         }
+
+
+
+        .window {
+            position: absolute;
+            min-width: 300px;
+            min-height: 32px;
+            background: rgba(40, 40, 40, 0.60);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .window-header {
+            height: var(--window-header-height);
+            display: flex;
+            align-items: center;
+            background: rgba(50, 50, 50, 0.9);
+            border-bottom: var(--window-border);
+            cursor: move;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .window-title {
+            flex: 1;
+            color: #fff;
+            font-size: 14px;
+            padding: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .window-controls {
+            display: flex;
+        }
+
+        .window-button {
+            width: 26px;
+            height: 26px;
+            border: none;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin: 4px;
+        }
+
+        .window-button img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .window-icon {
+            width: 26px;
+            height: 26px;
+        }
+
+        .window-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .window-content {
+            flex: 1;
+            overflow: auto;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -408,6 +480,11 @@
             }
         });
     </script>
+
+        <div id="windows"></div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
