@@ -20,7 +20,7 @@ export class WindowManager {
     header.className = 'window-header';
 
         function updateAccent() {
-          header.style.backgroundColor = window.getAccent("rgba(50, 50, 50, 0.88)");
+          header.style.backgroundColor = window.getAccent("rgba(10, 10, 10, 0.88)");
           requestAnimationFrame(updateAccent);
         }
         updateAccent();
