@@ -73,7 +73,7 @@ this.taskList.appendChild(taskButton);
 
     this.setupWindowEvents(id, windowEl, header);
     this.setupTaskButtonEvents(id, taskButton);
-    this.setupWindowControls(id, closeBtn2, maximizeBtn2, minimizeBtn2, shadeBtn2);
+    this.setupWindowControls(id, closeBtn, maximizeBtn, minimizeBtn, shadeBtn);
 
     this.activateWindow(id);
 
