@@ -46,6 +46,10 @@ export class WindowManager {
 
     windowEl.append(header, contentEl);
     window.parent.document.getElementById('windows').appendChild(windowEl);
+    
+    if (window.parent.lucide) {
+  window.parent.lucide.createIcons();
+}
 
 const taskButton = window.parent.document.createElement('button');
 taskButton.className = 'task-button';
