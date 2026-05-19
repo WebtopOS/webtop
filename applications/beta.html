@@ -13,10 +13,6 @@
       background: transparent;
     }
 
-    .message {
-      padding: 10px;
-    }
-
     h1,
     p,
     b,
@@ -25,19 +21,62 @@
       line-height: 1.5;
     }
 
-    ul {
-      padding-left: 20px;
+    .progress-container {
+        border: 1px solid #262626;
+        border-radius: 6px;
+        padding: 16px;
+        font-family: monospace;
+        color: #e5e5e5;
+        max-width: 500px;
+    }
+
+    .progress-container h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #a3a3a3;
+        font-size: 14px;
+    }
+
+    .progress-list {
+        list-style-type: square;
+        padding-left: 20px;
+        margin: 0;
+    }
+
+    .progress-list li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    .progress-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    .progress-list small {
+        color: #737373;
     }
   </style>
 </head>
 
 <body>
-  <div class="message">
-    <h1>Welcome to the new Webtop beta!</h1>
-    <p>Window managing works.</p>
-    <p>The window controls have been redone.
-"Shade" has been brought back with it's bugs fixed!</p>
-  </div>
+<div class="progress-container">
+    <h3>Progress</h3>
+    <ul class="progress-list">
+        <li>
+            New desktop UI rebuilt from the ground up.
+            <small>(with placeholders)</small>
+        </li>
+        <li>
+            The window manager is now connected and working.
+        </li>
+        <li>
+            New redesigned window control layout.
+            <small>(shade control back with fixed bugs)</small>
+        </li>
+    </ul>
+</div>
 </body>
 
 </html>
