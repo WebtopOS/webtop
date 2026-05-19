@@ -75,7 +75,7 @@ windowManager.createWindow({
   x: 500,
   y: 100,
   width: 600,
-  height: 400
+  height: 300
 });
 
 window.addEventListener("message", (event) => {
