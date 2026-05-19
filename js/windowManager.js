@@ -37,8 +37,8 @@ export class WindowManager {
     const maximizeBtn = this.createWindowButton(`maximize`);
     const closeBtn = this.createWindowButton(`x`)
 
-    controls.append(minimizeBtn, maximizeBtn);
-    header.append(closeBtn, titleEl, controls);
+    controls.append(minimizeBtn, closeBtn);
+    header.append(maximizeBtn, titleEl, controls);
 
     const contentEl = window.parent.document.createElement('div');
     contentEl.className = 'window-content';
