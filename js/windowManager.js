@@ -49,7 +49,7 @@ export class WindowManager {
 
     if (window.parent.lucide) {
   window.parent.lucide.createIcons();
-}
+  }
 
 const taskButton = window.parent.document.createElement('button');
 taskButton.className = 'task-button';
@@ -180,6 +180,7 @@ createWindowButton(iconName) {
 
   const icon = window.parent.document.createElement('i');
   icon.setAttribute('data-lucide', iconName);
+  icon.className = 'window-icon';
   
   button.appendChild(icon);
   return button;
