@@ -9,12 +9,12 @@ export class WindowManager {
   createWindow({ title, icon, content, x, y, width, height }) {
     const id = this.windowIdCounter++;
 
-    const windowEl = window.parent.document.createElement('div');
-    windowEl.className = 'window';
-    windowEl.style.width = `${width}px`;
-    windowEl.style.height = `${height}px`;
-    windowEl.style.left = `${x}px`;
-    windowEl.style.top = `${y}px`;
+    const winEl = window.parent.document.createElement('div');
+    winEl.className = 'window';
+    winEl.style.width = `${width}px`;
+    winEl.style.height = `${height}px`;
+    winEl.style.left = `${x}px`;
+    winEl.style.top = `${y}px`;
 
     const header = window.parent.document.createElement('div');
     header.className = 'window-header';
@@ -44,8 +44,8 @@ export class WindowManager {
     contentEl.className = 'window-content';
     contentEl.innerHTML = content;
 
-    windowEl.append(header, contentEl);
-    window.parent.document.getElementById('windows').appendChild(windowEl);
+    winEl.append(header, contentEl);
+    window.parent.document.getElementById('windows').appendChild(winEl);
 
     if (window.parent.lucide) {
   window.parent.lucide.createIcons();
@@ -63,7 +63,7 @@ taskButton.appendChild(appLabel);
 this.taskList.appendChild(taskButton);
 
     const windowData = {
-      element: windowEl,
+      element: winEl,
       taskButton,
       title,
       isMinimized: false
@@ -71,7 +71,7 @@ this.taskList.appendChild(taskButton);
 
     this.windows.set(id, windowData);
 
-    this.setupWindowEvents(id, windowEl, header);
+    this.setupWindowEvents(id, winEl, header);
     this.setupTaskButtonEvents(id, taskButton);
     this.setupWindowControls(id, closeBtn, maximizeBtn, minimizeBtn, shadeBtn);
 
@@ -105,14 +105,14 @@ this.taskList.appendChild(taskButton);
   taskbar.classList.remove("attached");
 }
   
-setupWindowEvents(id, windowEl, header) {
+setupWindowEvents(id, winEl, header) {
   let mouseDown = false;
   let clickDifferenceX = 0;
   let clickDifferenceY = 0;
 
-  const iframe = windowEl.querySelector('iframe');
+  const iframe = winEl.querySelector('iframe');
 
-  windowEl.addEventListener('mousedown', () => this.activateWindow(id));
+  winEl.addEventListener('mousedown', () => this.activateWindow(id));
 
   header.addEventListener('mousedown', (e) => {
     if (e.button !== 0) return;
@@ -121,7 +121,7 @@ setupWindowEvents(id, windowEl, header) {
 
     if (iframe) iframe.style.pointerEvents = 'none';
 
-    const rect = windowEl.getBoundingClientRect();
+    const rect = winEl.getBoundingClientRect();
     clickDifferenceX = e.clientX - rect.left;
     clickDifferenceY = e.clientY - rect.top;
   });
@@ -135,8 +135,8 @@ setupWindowEvents(id, windowEl, header) {
     if (!mouseDown) return;
     e.preventDefault();
 
-    windowEl.style.left = `${e.clientX - clickDifferenceX}px`;
-    windowEl.style.top  = `${e.clientY - clickDifferenceY}px`;
+    winEl.style.left = `${e.clientX - clickDifferenceX}px`;
+    winEl.style.top  = `${e.clientY - clickDifferenceY}px`;
 
     this.checkTaskbarContact();
   });
@@ -209,49 +209,54 @@ createWindowButton(iconName) {
 
 shadeWindow(id) {
   const win = this.windows.get(id);
-  const windowEl = win.element;
+  const winEl = win.element;
 
-  if (!windowEl.dataset.originalHeight) {
-    windowEl.dataset.originalHeight = windowEl.offsetHeight + 'px';
+  if (!winEl.dataset.originalHeight) {
+    winEl.dataset.originalHeight = winEl.offsetHeight + 'px';
   }
 
-  const isShaded = windowEl.classList.contains('shaded');
+  const isShaded = winEl.classList.contains('shaded');
 
   if (isShaded) {
-    windowEl.style.height = windowEl.dataset.originalHeight;
-    windowEl.classList.remove('shaded');
+    winEl.style.height = winEl.dataset.originalHeight;
+    winEl.classList.remove('shaded');
   } else {
-    windowEl.style.height = '32px';
-    windowEl.classList.add('shaded');
+    winEl.style.height = '32px';
+    winEl.classList.add('shaded');
   }
 }
 
   restoreWindow(id) {
     const win = this.windows.get(id);
-    win.element.style.display = 'flex';
+    const winEl = win.element;
+    winEl.style.display = 'flex';
     win.isMinimized = false;
     this.activateWindow(id);
   }
 
   maximizeWindow(id) {
     const win = this.windows.get(id);
-    const isMaximized = win.element.style.width === '100vw';
+    const winEl = win.element;
+    const isMaximized = winEl.style.width === '100vw';
+    const isShaded = winEl.classList.contains('shaded');
+
+    if(isShaded) return;
 
     if (isMaximized) {
-      win.element.style.width = win.prevWidth || '400px';
-      win.element.style.height = win.prevHeight || '300px';
-      win.element.style.left = win.prevLeft || '0px';
-      win.element.style.top = win.prevTop || '0px';
+      winEl.style.width = win.prevWidth || '400px';
+      winEl.style.height = win.prevHeight || '300px';
+      winEl.style.left = win.prevLeft || '0px';
+      winEl.style.top = win.prevTop || '0px';
     } else {
       win.prevWidth = win.element.style.width;
       win.prevHeight = win.element.style.height;
       win.prevLeft = win.element.style.left;
       win.prevTop = win.element.style.top;
 
-      win.element.style.width = '100vw';
-      win.element.style.height = `calc(100vh - 48px)`;
-      win.element.style.left = '0';
-      win.element.style.top = '0';
+      winEl.style.width = '100vw';
+      winEl.style.height = `calc(100vh - 48px)`;
+      winEl.style.left = '0';
+      winEl.style.top = '0';
     }
   }
 
