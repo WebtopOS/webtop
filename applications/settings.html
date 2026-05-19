@@ -153,7 +153,7 @@
       document.querySelectorAll('.image-grid img').forEach(img => {
         img.addEventListener('click', () => {
           const bgUrl = `url('${img.src}')`;
-          const targetDiv = window.parent.document.getElementById('desktop');
+          const targetDiv = window.parent.document.body;
           if (targetDiv) {
             targetDiv.style.backgroundImage = bgUrl;
           }
