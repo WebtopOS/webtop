@@ -173,20 +173,11 @@ setupWindowEvents(id, windowEl, header) {
 createWindowButton(iconName) {
   const button = window.parent.document.createElement('button');
   button.className = 'window-button';
+
+  const icon = window.parent.document.createElement('i');
+  icon.setAttribute('data-lucide', iconName);
   
-  // Look up the icon in Lucide's library. 
-  // Fall back to plain text if the icon name doesn't exist (e.g., if you pass custom text).
-  if (window.parent.lucide && window.parent.lucide.icons[iconName]) {
-    button.innerHTML = window.parent.lucide.icons[iconName].toSvg({
-      class: 'window-icon',
-      'stroke-width': 2,
-      width: 14,
-      height: 14
-    });
-  } else {
-    button.textContent = iconName;
-  }
-  
+  button.appendChild(icon);
   return button;
 }
 
