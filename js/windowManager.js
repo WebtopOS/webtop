@@ -38,7 +38,7 @@ export class WindowManager {
     const closeBtn = this.createWindowButton(`x`)
 
     controls.append(minimizeBtn, closeBtn);
-    header.append(maximizeBtn, titleEl, controls);
+    header.append(maximizeBtn, shadeBtn, titleEl, controls);
 
     const contentEl = window.parent.document.createElement('div');
     contentEl.className = 'window-content';
@@ -224,11 +224,9 @@ shadeWindow(id) {
   if (isShaded) {
     windowEl.style.height = windowEl.dataset.originalHeight;
     windowEl.classList.remove('shaded');
-    shadeImg.src = './icons/controls/shade_up.svg';
   } else {
     windowEl.style.height = '32px';
     windowEl.classList.add('shaded');
-    shadeImg.src = './icons/controls/shade_down.svg';
   }
 }
 
