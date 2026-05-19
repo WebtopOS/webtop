@@ -33,9 +33,9 @@ export class WindowManager {
     controls.className = 'window-controls';
 
     const shadeBtn = this.createWindowButton(`➕`);
-    const minimizeBtn = this.createWindowButton('circle-minus');
-    const maximizeBtn = this.createWindowButton(`circle-plus`);
-    const closeBtn = this.createWindowButton(`circle-x`)
+    const minimizeBtn = this.createWindowButton('minus');
+    const maximizeBtn = this.createWindowButton(`maximize`);
+    const closeBtn = this.createWindowButton(`x`)
 
     controls.append(minimizeBtn, maximizeBtn);
     header.append(closeBtn, titleEl, controls);
