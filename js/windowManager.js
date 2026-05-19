@@ -34,8 +34,8 @@ export class WindowManager {
 
     const shadeBtn = this.createWindowButton(`➕`);
     const minimizeBtn = this.createWindowButton('square-arrow-out-down-left');
-    const maximizeBtn = this.createWindowButton(`square-arrow-out-up-right`);
-    const closeBtn = this.createWindowButton(`square-x`)
+    const maximizeBtn = this.createWindowButton(`plus`);
+    const closeBtn = this.createWindowButton(`x`)
 
     controls.append(minimizeBtn, maximizeBtn);
     header.append(closeBtn, titleEl, controls);
@@ -46,7 +46,7 @@ export class WindowManager {
 
     windowEl.append(header, contentEl);
     window.parent.document.getElementById('windows').appendChild(windowEl);
-    
+
     if (window.parent.lucide) {
   window.parent.lucide.createIcons();
 }
