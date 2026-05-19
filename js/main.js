@@ -74,8 +74,8 @@ windowManager.createWindow({
   content: `<iframe src="./applications/beta.html" width="100%" height="100%" style="border:none;"></iframe>`,
   x: 500,
   y: 100,
-  width: 600,
-  height: 300
+  width: 650,
+  height: 350
 });
 
 window.addEventListener("message", (event) => {
