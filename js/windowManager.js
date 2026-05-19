@@ -216,6 +216,9 @@ shadeWindow(id) {
   }
 
   const isShaded = winEl.classList.contains('shaded');
+  const isMaximized = winEl.style.width === '100vw';
+
+    if(isMaximized) return;
 
   if (isShaded) {
     winEl.style.height = winEl.dataset.originalHeight;
