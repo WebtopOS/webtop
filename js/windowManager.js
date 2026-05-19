@@ -33,17 +33,12 @@ export class WindowManager {
     controls.className = 'window-controls';
 
     const shadeBtn = this.createWindowButton(`➕`);
-    const minimizeBtn = this.createWindowButton('➖');
-    const maximizeBtn = this.createWindowButton(`➕`);
-    const closeBtn = this.createWindowButton(`❌`)
+    const minimizeBtn = this.createWindowButton('square-arrow-out-down-left');
+    const maximizeBtn = this.createWindowButton(`square-arrow-out-up-right`);
+    const closeBtn = this.createWindowButton(`square-x`)
 
-    const shadeBtn2 = this.createWindowIcon(`./icons/controls/shade_up.svg`);
-    const minimizeBtn2 = this.createWindowIcon('./icons/controls/minus.svg');
-    const maximizeBtn2 = this.createWindowIcon(`./icons/controls/maximize-1.svg`);
-    const closeBtn2 = this.createWindowIcon(`./icons/controls/x.svg`)
-
-    controls.append(minimizeBtn2, maximizeBtn2);
-    header.append(closeBtn2, titleEl, controls);
+    controls.append(minimizeBtn, maximizeBtn);
+    header.append(closeBtn, titleEl, controls);
 
     const contentEl = window.parent.document.createElement('div');
     contentEl.className = 'window-content';
@@ -175,21 +170,25 @@ setupWindowEvents(id, windowEl, header) {
     Btn4.addEventListener('click', () => this.shadeWindow(id));
   }
 
-  createWindowButton(text) {
-    const button = window.parent.document.createElement('button');
-    button.className = 'window-button';
-    button.textContent = text;
-    return button;
+createWindowButton(iconName) {
+  const button = window.parent.document.createElement('button');
+  button.className = 'window-button';
+  
+  // Look up the icon in Lucide's library. 
+  // Fall back to plain text if the icon name doesn't exist (e.g., if you pass custom text).
+  if (window.parent.lucide && window.parent.lucide.icons[iconName]) {
+    button.innerHTML = window.parent.lucide.icons[iconName].toSvg({
+      class: 'window-icon',
+      'stroke-width': 2,
+      width: 14,
+      height: 14
+    });
+  } else {
+    button.textContent = iconName;
   }
-  createWindowIcon(text) {
-    const button = window.parent.document.createElement('button');
-    button.className = 'window-button';
-    const image = window.parent.document.createElement('img');
-    image.className = 'window-icon';
-    image.src = text;
-    button.appendChild(image);
-    return button;
-  }
+  
+  return button;
+}
 
 
   activateWindow(id) {
