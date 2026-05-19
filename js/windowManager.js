@@ -217,10 +217,6 @@ shadeWindow(id) {
 
   const isShaded = windowEl.classList.contains('shaded');
 
-  const windowIcons = windowEl.querySelectorAll('img.window-icon');
-  if (windowIcons.length <= 2) return;
-  const shadeImg = windowIcons[2];
-
   if (isShaded) {
     windowEl.style.height = windowEl.dataset.originalHeight;
     windowEl.classList.remove('shaded');
