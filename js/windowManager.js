@@ -34,7 +34,7 @@ export class WindowManager {
 
     const shadeBtn = this.createWindowButton('chevron-up');
     const minimizeBtn = this.createWindowButton('minus');
-    const maximizeBtn = this.createWindowButton(`plus`);
+    const maximizeBtn = this.createWindowButton(`maximize`);
     const closeBtn = this.createWindowButton(`x`)
 
     controls.append(minimizeBtn, closeBtn);
