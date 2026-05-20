@@ -50,7 +50,7 @@ if (params.get('dev') === 'true') {
           x: 200,
           y: 150,
           width: 800,
-          height: 600
+          height: 800
         });
       });
     }
