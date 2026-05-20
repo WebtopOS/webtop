@@ -50,7 +50,7 @@ if (params.get('dev') === 'true') {
           x: 200,
           y: 150,
           width: 800,
-          height: 800
+          height: 600
         });
       });
     }
@@ -74,8 +74,8 @@ windowManager.createWindow({
   content: `<iframe src="./applications/beta.html" width="100%" height="100%" style="border:none;"></iframe>`,
   x: 500,
   y: 100,
-  width: 700,
-  height: 300
+  width: 800,
+  height: 800
 });
 
 window.addEventListener("message", (event) => {
