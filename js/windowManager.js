@@ -36,7 +36,7 @@ export class WindowManager {
     const minimizeBtn = this.createWindowButton('minus');
     const maximizeBtn = this.createWindowButton(`maximize`);
     const closeBtn = this.createWindowButton(`x`)
-    const backBtn = this.createWindowButton(`arrow-left`)
+    const backBtn = this.createWindowButton(`chevron-left`)
 
     controls.append(backBtn, minimizeBtn, closeBtn);
     header.append(maximizeBtn, shadeBtn, titleEl, controls);
