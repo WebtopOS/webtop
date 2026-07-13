@@ -66,26 +66,6 @@
       transform: scale(1.05);
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
-
-    .swatches {
-      display: flex;
-      gap: 10px;
-      margin: 10px 0;
-    }
-
-    .swatch {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid white;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .swatch:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
-    }
   </style>
 </head>
 
@@ -94,7 +74,6 @@
     <div class="sidebar">
       <h2>Webtop Settings</h2>
       <a href="#">Wallpaper</a>
-      <a href="#">Accent</a>
     </div>
     <div class="main-content">
       <h1>Welcome</h1>
@@ -111,45 +90,9 @@
           <img src="../backgrounds/borealis2.png" />
         </div>
       </div>
-
-      <div id="accent-tab" style="display:none">
-        <p>Select an accent colour:</p>
-
-        <div class="swatches">
-          <div class="swatch" data-colour="#1e1e1e" style="background:#1e1e1e"></div>
-          <div class="swatch" data-colour="#ff4c4c" style="background:#FF4C4C"></div>
-          <div class="swatch" data-colour="#ff7f2a" style="background:#FF7F2A"></div>
-          <div class="swatch" data-colour="#ffcc00" style="background:#FFCC00"></div>
-          <div class="swatch" data-colour="#4caf50" style="background:#4CAF50"></div>
-          <div class="swatch" data-colour="#855cd6" style="background:#855CD6"></div>
-          <div class="swatch" data-colour="#4c97ff" style="background:#4C97FF"></div>
-        </div>
-
-        <p>Or pick a custom colour:</p>
-        <input type="color" id="customColour" value="#ff4757" />
-      </div>
     </div>
 
     <script>
-      const links = document.querySelectorAll('.sidebar a');
-      const tabs = {
-        Wallpaper: document.getElementById('wallpaper-tab'),
-        Accent: document.getElementById('accent-tab')
-      };
-
-      links.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const tabName = link.textContent.trim();
-
-          Object.values(tabs).forEach(tab => tab.style.display = 'none');
-
-          if (tabs[tabName]) {
-            tabs[tabName].style.display = 'block';
-          }
-        });
-      });
-
       document.querySelectorAll('.image-grid img').forEach(img => {
         img.addEventListener('click', () => {
           const bgUrl = `url('${img.src}')`;
@@ -158,32 +101,6 @@
             targetDiv.style.background = bgUrl;
           }
         });
-      });
-
-      function hexToRgba(hex, alpha = 0.6) {
-        hex = hex.replace('#', '');
-        let r = parseInt(hex.substring(0, 2), 16);
-        let g = parseInt(hex.substring(2, 4), 16);
-        let b = parseInt(hex.substring(4, 6), 16);
-        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-      }
-
-      function applyAccent(colour) {
-        const taskbar = window.parent.document.getElementById('taskbar');
-        if (taskbar) {
-          taskbar.style.backgroundColor = hexToRgba(colour, 0.6);
-        }
-      }
-
-      document.querySelectorAll('.swatch').forEach(swatch => {
-        swatch.addEventListener('click', () => {
-          const colour = swatch.dataset.colour;
-          applyAccent(colour);
-        });
-      });
-
-      document.getElementById('customColour').addEventListener('input', (e) => {
-        applyAccent(e.target.value);
       });
     </script>
 </body>

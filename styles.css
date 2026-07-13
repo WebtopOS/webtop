@@ -241,6 +241,45 @@
           text-overflow: ellipsis;
         }
 
+        .start-icon {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 64px;
+          height: 64px;
+          cursor: pointer;
+          border-radius: 14px;
+          transition: background 0.2s;
+          pointer-events: auto;
+        }
+
+        .start-icon svg {
+          height: 24px;
+          width: auto;
+        }
+
+        .start-icon img {
+          height: 24px;
+          width: auto;
+        }
+
+        .start-icon:hover {
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        .start-icon span {
+          font-size: 12px;
+          margin-top: 8px;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+          font-weight: 500;
+          text-align: center;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
         .start-menu {
           position: absolute;
           bottom: 48px;
@@ -344,11 +383,6 @@
           justify-content: center;
           font-size: 14px;
           margin: 4px;
-        }
-
-        .desktop-icon svg {
-          height: 24px;
-          width: auto;
         }
 
         .window-icon {
