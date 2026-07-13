@@ -41,7 +41,7 @@
 
         const commands = {
             help: "Available commands: help, about, weofetch, clear",
-            about: "Webtop Terminal v0.2",
+            about: "Webtop Terminal v2.0",
             clear: () => { term.clear(); return ""; },
             weofetch: () => {
                 return `   ___ 
@@ -55,7 +55,6 @@ Screen: ${window.innerWidth}x${window.innerHeight} @ ${window.devicePixelRatio}x
             }
         };
 
-        term.writeln('Webtop Terminal v2.0');
         term.write('> ');
 
         let currentInput = '';
