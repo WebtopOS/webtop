@@ -70,7 +70,7 @@
                     `System: Webtop <${getBrowserName()}>`,
                     `CPU:    ${navigator.hardwareConcurrency || "Unknown"}`,
                     `RAM:    ${navigator.deviceMemory ? `${navigator.deviceMemory} GB` : "Unknown"}`,
-                    `Screen: ${window.innerWidth}x${window.innerHeight} @ ${window.devicePixelRatio}x`
+                    `Screen: ${window.parent.innerWidth}x${window.parent.innerHeight} @ ${window.devicePixelRatio}x`
                 ].join('\r\n');
             },
         };
