@@ -71,8 +71,8 @@
                     `CPU:    ${navigator.hardwareConcurrency || "Unknown"}`,
                     `RAM:    ${navigator.deviceMemory ? `${navigator.deviceMemory} GB` : "Unknown"}`,
                     `Screen: ${window.innerWidth}x${window.innerHeight} @ ${window.devicePixelRatio}x`
-                ].join('\n');
-            }
+                ].join('\r\n');
+            },
         };
 
         term.write('> ');
