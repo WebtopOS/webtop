@@ -157,6 +157,9 @@ document.querySelectorAll('.start-icon').forEach(icon => {
       .replace(/[^a-z0-9_-]+/g, '_')
       .replace(/^([^a-z])/, '_$1');
 
+  const menu = document.getElementById('start-menu');
+  menu.setAttribute('hidden', '');
+
     if (e.shiftKey) {
       windowManager.createWindow({
         title: title,
