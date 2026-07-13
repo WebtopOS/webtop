@@ -143,7 +143,7 @@ document.querySelectorAll('.start-icon').forEach(icon => {
   span.textContent = title;
   icon.appendChild(span);
 
-  const eventName = new URLSearchParams(location.search).get("icon") || "dblclick";
+  const eventName = new URLSearchParams(location.search).get("icon") || "click";
   icon.addEventListener(eventName, (e) => {
     const title = icon.getAttribute('data-title');
     const url = icon.getAttribute('data-url');
