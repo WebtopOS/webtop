@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Media Player Pro</title>
+    <title>Music</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
     <style>
@@ -28,6 +28,7 @@
             justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
+            flex-shrink: 0;
         }
 
         main {
@@ -49,6 +50,12 @@
             justify-content: space-between;
         }
 
+        .controls-group {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
         button {
             background: none;
             border: none;
@@ -67,7 +74,6 @@
 
     <main>
         <ul id="playlist"></ul>
-        <input type="file" id="file-input" accept="audio/*">
     </main>
 
     <footer class="control-bar">
@@ -84,19 +90,27 @@
         </div>
     </footer>
 
+    <input type="file" id="file-input" accept="audio/*">
     <audio id="audio-player"></audio>
 
     <script>
         let db;
         const request = indexedDB.open("MusicLibrary", 1);
+
         request.onupgradeneeded = (e) => { e.target.result.createObjectStore("songs", { keyPath: "id" }); };
         request.onsuccess = (e) => { db = e.target.result; renderPlaylist(); };
 
         document.getElementById('file-input').addEventListener('change', (e) => {
             const file = e.target.files[0];
-            jsmediatags.read(file, {
+            if (!file) return;
+
+            window.jsmediatags.read(file, {
                 onSuccess: (tag) => {
                     const song = { id: Date.now(), name: file.name, title: tag.tags.title || file.name, artist: tag.tags.artist || "Unknown", file: file };
+                    db.transaction(["songs"], "readwrite").objectStore("songs").add(song).onsuccess = renderPlaylist;
+                },
+                onError: () => {
+                    const song = { id: Date.now(), name: file.name, title: file.name, artist: "Unknown", file: file };
                     db.transaction(["songs"], "readwrite").objectStore("songs").add(song).onsuccess = renderPlaylist;
                 }
             });
@@ -110,9 +124,14 @@
                     const li = document.createElement('li');
                     li.className = 'track-item';
                     li.innerHTML = `<span>${song.title} - ${song.artist}</span>`;
-                    li.onclick = () => { audio.src = URL.createObjectURL(song.file); audio.play(); };
+                    li.onclick = () => {
+                        const audio = document.getElementById('audio-player');
+                        audio.src = URL.createObjectURL(song.file);
+                        audio.play();
+                    };
                     list.appendChild(li);
                 });
+                lucide.createIcons();
             };
         }
     </script>
