@@ -54,6 +54,11 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            transition: background 0.2s;
+        }
+
+        .track-item:hover {
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .album-art-thumb {
@@ -76,6 +81,9 @@
             color: white;
             cursor: pointer;
             padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #file-input {
@@ -100,7 +108,9 @@
             <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1">
             <button id="shuffle"><i data-lucide="shuffle"></i></button>
             <button id="repeat"><i data-lucide="repeat"></i></button>
-            <button onclick="document.getElementById('file-input').click()"><i data-lucide="plus"></i></button>
+            <button onclick="document.getElementById('file-input').click()">
+                <i data-lucide="plus"></i>
+            </button>
         </div>
     </footer>
 
@@ -108,63 +118,66 @@
     <audio id="audio-player"></audio>
 
     <script>
-        lucide.createIcons();
-        let db;
+        let db, currentIndex = 0, songsList = [], isShuffle = false, isRepeat = false;
         const audio = document.getElementById('audio-player');
         const playPauseBtn = document.getElementById('play-pause');
-        const volumeSlider = document.getElementById('volume-slider');
-        volumeSlider.addEventListener('input', (e) => {
-            audio.volume = e.target.value;
-        });
 
         const request = indexedDB.open("MusicLibrary", 1);
         request.onupgradeneeded = (e) => { e.target.result.createObjectStore("songs", { keyPath: "id" }); };
         request.onsuccess = (e) => { db = e.target.result; renderPlaylist(); };
 
-        document.getElementById('file-input').addEventListener('change', (e) => {
+        function playTrack(index) {
+            if (index < 0 || index >= songsList.length) return;
+            currentIndex = index;
+            audio.src = URL.createObjectURL(songsList[currentIndex].file);
+            audio.play();
+            playPauseBtn.innerHTML = '<i data-lucide="pause"></i>';
+            lucide.createIcons();
+        }
+
+        document.getElementById('play-pause').onclick = () => {
+            if (audio.paused) { audio.play(); playPauseBtn.innerHTML = '<i data-lucide="pause"></i>'; }
+            else { audio.pause(); playPauseBtn.innerHTML = '<i data-lucide="play"></i>'; }
+            lucide.createIcons();
+        };
+
+        document.getElementById('next').onclick = () => {
+            let next = isShuffle ? Math.floor(Math.random() * songsList.length) : currentIndex + 1;
+            playTrack(next % songsList.length);
+        };
+
+        document.getElementById('prev').onclick = () => playTrack((currentIndex - 1 + songsList.length) % songsList.length);
+        document.getElementById('shuffle').onclick = () => { isShuffle = !isShuffle; document.getElementById('shuffle').style.color = isShuffle ? '#6366f1' : 'white'; };
+        document.getElementById('repeat').onclick = () => { isRepeat = !isRepeat; document.getElementById('repeat').style.color = isRepeat ? '#6366f1' : 'white'; };
+        document.getElementById('volume-slider').oninput = (e) => audio.volume = e.target.value;
+
+        audio.onended = () => { if (isRepeat) audio.play(); else document.getElementById('next').click(); };
+
+        document.getElementById('file-input').onchange = (e) => {
             const file = e.target.files[0];
             window.jsmediatags.read(file, {
                 onSuccess: (tag) => {
-                    let base64String = "";
-                    if (tag.tags.picture) {
-                        const { data, format } = tag.tags.picture;
-                        data.forEach(byte => base64String += String.fromCharCode(byte));
-                        base64String = `data:${format};base64,${window.btoa(base64String)}`;
-                    }
-                    const song = { id: Date.now(), name: file.name, title: tag.tags.title || file.name, artist: tag.tags.artist || "Unknown", art: base64String, file: file };
+                    const song = { id: Date.now(), title: tag.tags.title || file.name, artist: tag.tags.artist || "Unknown", art: null, file };
                     db.transaction(["songs"], "readwrite").objectStore("songs").add(song).onsuccess = renderPlaylist;
                 }
             });
-        });
+        };
 
         function renderPlaylist() {
             const list = document.getElementById('playlist');
             list.innerHTML = '';
             db.transaction("songs").objectStore("songs").getAll().onsuccess = (e) => {
-                e.target.result.forEach(song => {
+                songsList = e.target.result;
+                songsList.forEach((song, index) => {
                     const li = document.createElement('li');
                     li.className = 'track-item';
-                    li.innerHTML = `
-                    <img class="album-art-thumb" src="${song.art || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='}">
-                    <span>${song.title} - ${song.artist}</span>
-                `;
-                    li.onclick = () => {
-                        audio.src = URL.createObjectURL(song.file);
-                        audio.play();
-                        playPauseBtn.innerHTML = '<i data-lucide="pause"></i>';
-                        lucide.createIcons();
-                    };
+                    li.innerHTML = `<span>${song.title} - ${song.artist}</span>`;
+                    li.onclick = () => playTrack(index);
                     list.appendChild(li);
                 });
-                lucide.createIcons();
             };
         }
-
-        playPauseBtn.addEventListener('click', () => {
-            if (audio.paused) { audio.play(); playPauseBtn.innerHTML = '<i data-lucide="pause"></i>'; }
-            else { audio.pause(); playPauseBtn.innerHTML = '<i data-lucide="play"></i>'; }
-            lucide.createIcons();
-        });
+        lucide.createIcons();
     </script>
 </body>
 
