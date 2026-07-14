@@ -191,7 +191,7 @@
                     li.innerHTML = `
     <img class="album-art-thumb" src="${song.art || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='}">
     <span>${song.title}</span>
-    <span><small>${song.artist}</small></span>
+    <br><span><small>${song.artist}</small></span>
 `;
                     li.onclick = () => playTrack(index);
                     list.appendChild(li);
