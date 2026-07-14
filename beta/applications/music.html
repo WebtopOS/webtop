@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Music</title>
+    <title>Media Player Pro</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
     <style>
@@ -35,19 +35,33 @@
             flex: 1;
             padding: 20px;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #playlist {
             list-style: none;
             padding: 0;
+            width: 100%;
+            max-width: 600px;
         }
 
         .track-item {
-            padding: 10px;
+            padding: 15px;
             border-bottom: 1px solid #333;
             cursor: pointer;
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .album-art-thumb {
+            width: 50px;
+            height: 50px;
+            background: #333;
+            border-radius: 4px;
+            object-fit: cover;
         }
 
         .controls-group {
@@ -94,23 +108,26 @@
     <audio id="audio-player"></audio>
 
     <script>
+        lucide.createIcons();
         let db;
-        const request = indexedDB.open("MusicLibrary", 1);
+        const audio = document.getElementById('audio-player');
+        const playPauseBtn = document.getElementById('play-pause');
 
+        const request = indexedDB.open("MusicLibrary", 1);
         request.onupgradeneeded = (e) => { e.target.result.createObjectStore("songs", { keyPath: "id" }); };
         request.onsuccess = (e) => { db = e.target.result; renderPlaylist(); };
 
         document.getElementById('file-input').addEventListener('change', (e) => {
             const file = e.target.files[0];
-            if (!file) return;
-
             window.jsmediatags.read(file, {
                 onSuccess: (tag) => {
-                    const song = { id: Date.now(), name: file.name, title: tag.tags.title || file.name, artist: tag.tags.artist || "Unknown", file: file };
-                    db.transaction(["songs"], "readwrite").objectStore("songs").add(song).onsuccess = renderPlaylist;
-                },
-                onError: () => {
-                    const song = { id: Date.now(), name: file.name, title: file.name, artist: "Unknown", file: file };
+                    let base64String = "";
+                    if (tag.tags.picture) {
+                        const { data, format } = tag.tags.picture;
+                        data.forEach(byte => base64String += String.fromCharCode(byte));
+                        base64String = `data:${format};base64,${window.btoa(base64String)}`;
+                    }
+                    const song = { id: Date.now(), name: file.name, title: tag.tags.title || file.name, artist: tag.tags.artist || "Unknown", art: base64String, file: file };
                     db.transaction(["songs"], "readwrite").objectStore("songs").add(song).onsuccess = renderPlaylist;
                 }
             });
@@ -123,17 +140,27 @@
                 e.target.result.forEach(song => {
                     const li = document.createElement('li');
                     li.className = 'track-item';
-                    li.innerHTML = `<span>${song.title} - ${song.artist}</span>`;
+                    li.innerHTML = `
+                    <img class="album-art-thumb" src="${song.art || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='}">
+                    <span>${song.title} - ${song.artist}</span>
+                `;
                     li.onclick = () => {
-                        const audio = document.getElementById('audio-player');
                         audio.src = URL.createObjectURL(song.file);
                         audio.play();
+                        playPauseBtn.innerHTML = '<i data-lucide="pause"></i>';
+                        lucide.createIcons();
                     };
                     list.appendChild(li);
                 });
                 lucide.createIcons();
             };
         }
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) { audio.play(); playPauseBtn.innerHTML = '<i data-lucide="pause"></i>'; }
+            else { audio.pause(); playPauseBtn.innerHTML = '<i data-lucide="play"></i>'; }
+            lucide.createIcons();
+        });
     </script>
 </body>
 
