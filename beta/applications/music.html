@@ -157,7 +157,26 @@
             const file = e.target.files[0];
             window.jsmediatags.read(file, {
                 onSuccess: (tag) => {
-                    const song = { id: Date.now(), title: tag.tags.title || file.name, artist: tag.tags.artist || "Unknown", art: null, file };
+                    let art = null;
+                    const picture = tag.tags.picture;
+
+                    if (picture && picture.data) {
+                        let base64 = "";
+                        const data = picture.data;
+                        for (let i = 0; i < data.length; i++) {
+                            base64 += String.fromCharCode(data[i]);
+                        }
+                        art = `data:${picture.format || 'image/jpeg'};base64,${window.btoa(base64)}`;
+                    }
+
+                    const song = {
+                        id: Date.now(),
+                        title: tag.tags.title || file.name,
+                        artist: tag.tags.artist || "Unknown",
+                        art: art,
+                        file: file
+                    };
+
                     db.transaction(["songs"], "readwrite").objectStore("songs").add(song).onsuccess = renderPlaylist;
                 }
             });
