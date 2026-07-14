@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Media Player Pro</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: transparent !important;
+            color: #ffffff;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .control-bar {
+            width: 100%;
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #track-info {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .controls-group {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        #volume-slider {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        #file-input {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <div id="track-info">Select a track to begin</div>
+        <input type="file" id="file-input" accept="audio/*">
+    </main>
+
+    <footer class="control-bar">
+        <div class="controls-group">
+            <button id="prev"><i data-lucide="skip-back"></i></button>
+            <button id="play-pause"><i data-lucide="play"></i></button>
+            <button id="next"><i data-lucide="skip-forward"></i></button>
+            <button id="shuffle"><i data-lucide="shuffle"></i></button>
+        </div>
+
+        <div class="controls-group">
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1">
+
+            <button id="repeat"><i data-lucide="repeat"></i></button>
+            <button onclick="document.getElementById('file-input').click()">
+                <i data-lucide="plus"></i>
+            </button>
+        </div>
+    </footer>
+
+    <audio id="audio-player"></audio>
+
+    <script>
+        lucide.createIcons();
+        const audio = document.getElementById('audio-player');
+        const volumeSlider = document.getElementById('volume-slider');
+        const playPauseBtn = document.getElementById('play-pause');
+
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+        });
+
+        document.getElementById('file-input').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                audio.src = URL.createObjectURL(file);
+                document.getElementById('track-info').textContent = file.name;
+            }
+        });
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.innerHTML = '<i data-lucide="pause"></i>';
+            } else {
+                audio.pause();
+                playPauseBtn.innerHTML = '<i data-lucide="play"></i>';
+            }
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>
