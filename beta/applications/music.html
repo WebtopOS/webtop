@@ -112,6 +112,10 @@
         let db;
         const audio = document.getElementById('audio-player');
         const playPauseBtn = document.getElementById('play-pause');
+        const volumeSlider = document.getElementById('volume-slider');
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+        });
 
         const request = indexedDB.open("MusicLibrary", 1);
         request.onupgradeneeded = (e) => { e.target.result.createObjectStore("songs", { keyPath: "id" }); };
