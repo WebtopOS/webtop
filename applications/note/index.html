@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/defaultdark.min.css" />
     <style>
         :root {
-          --glass-dark: rgba(10, 10, 10, 0.88);
-          --border: rgba(255, 255, 255, 0.12);
-          --text-main: #ffffff;
-          --text-dim: rgba(255, 255, 255, 0.5);
+            --glass-dark: rgba(10, 10, 10, 0.88);
+            --border: rgba(255, 255, 255, 0.12);
+            --text-main: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.5);
         }
 
         html,
@@ -40,11 +40,13 @@
             border-bottom: none !important;
             display: flex;
             justify-content: center;
-        }
-
-        .sceditor-toolbar {
             position: relative;
             height: 35px;
+        }
+
+        div.sceditor-group {
+            background: var(--border);
+            border-bottom: 1px solid #000;
         }
 
         .sceditor-container iframe {
@@ -78,7 +80,7 @@
 </head>
 
 <body>
-   <div id="toolbar"></div>
+    <div id="toolbar"></div>
     <textarea id="editor"></textarea>
 
     <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/sceditor.min.js"></script>
