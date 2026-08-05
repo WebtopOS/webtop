@@ -10,33 +10,34 @@
         getInfo() {
             return {
                 id: 'toolsforwebtop',
-                name: 'Webtop',
+                name: 'Webtop Tools',
                 blocks: [
                     {
                         opcode: 'newWindow',
                         blockType: Scratch.BlockType.COMMAND,
                         text: 'new window content:[CONTENT] x:[X] y:[Y] width:[WIDTH] height:[HEIGHT]',
                         arguments: {
-                            CONTENT: {
-                                type: Scratch.ArgumentType.STRING,
-                                defaultValue: 'Hello'
-                            },
-                            X: {
-                                type: Scratch.ArgumentType.NUMBER,
-                                defaultValue: 0
-                            },
-                            Y: {
-                                type: Scratch.ArgumentType.NUMBER,
-                                defaultValue: 0
-                            },
-                            WIDTH: {
-                                type: Scratch.ArgumentType.NUMBER,
-                                defaultValue: 200
-                            },
-                            HEIGHT: {
-                                type: Scratch.ArgumentType.NUMBER,
-                                defaultValue: 150
-                            }
+                            CONTENT: { type: Scratch.ArgumentType.STRING, defaultValue: 'Hello' },
+                            X: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
+                            Y: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
+                            WIDTH: { type: Scratch.ArgumentType.NUMBER, defaultValue: 200 },
+                            HEIGHT: { type: Scratch.ArgumentType.NUMBER, defaultValue: 150 }
+                        }
+                    },
+                    {
+                        opcode: 'getWindowByTitle',
+                        blockType: Scratch.BlockType.REPORTER,
+                        text: 'window with title [TITLE]',
+                        arguments: {
+                            TITLE: { type: Scratch.ArgumentType.STRING, defaultValue: 'Notepad' }
+                        }
+                    },
+                    {
+                        opcode: 'focusWindow',
+                        blockType: Scratch.BlockType.COMMAND,
+                        text: 'focus window [TITLE]',
+                        arguments: {
+                            TITLE: { type: Scratch.ArgumentType.STRING, defaultValue: 'Notepad' }
                         }
                     }
                 ]
@@ -52,6 +53,28 @@
                 width: args.WIDTH,
                 height: args.HEIGHT
             });
+        }
+
+        getWindowByTitle(args) {
+            const windows = document.querySelectorAll('#windows .window');
+            for (const win of windows) {
+                const titleEl = win.querySelector('.window-title');
+                if (titleEl && titleEl.textContent.trim() === args.TITLE) {
+                    return win.outerHTML;
+                }
+            }
+            return '';
+        }
+
+        focusWindow(args) {
+            const windows = document.querySelectorAll('#windows .window');
+            for (const win of windows) {
+                const titleEl = win.querySelector('.window-title');
+                if (titleEl && titleEl.textContent.trim() === args.TITLE) {
+                    win.style.zIndex = 1000;
+                    break;
+                }
+            }
         }
     }
     Scratch.extensions.register(new Extension());
