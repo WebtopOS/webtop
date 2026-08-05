@@ -8,6 +8,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/monokai.min.css">
   <style>
+    :root {
+      --glass-dark: rgba(10, 10, 10, 0.88);
+      --light: rgba(255, 255, 255, 0.1);
+      --border: rgba(255, 255, 255, 0.12);
+      --text-main: #ffffff;
+      --text-dim: rgba(255, 255, 255, 0.5);
+    }
+
     html,
     body {
       margin: 0;
@@ -42,6 +50,7 @@
       flex-direction: column;
       align-items: center;
       gap: 5px;
+      background-color: var(--glass-dark);
     }
 
     .sidebar-btn {
@@ -98,6 +107,7 @@
       padding: 0 10px;
       font-family: 'Miracode', monospace;
       user-select: none;
+      background-color: var(--glass-dark);
     }
 
     #statusbar span {
@@ -140,15 +150,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/python/python.js"></script>
 
   <script>
-    const sidebar = document.getElementById("sidebar");
-    const statusbar = document.getElementById("statusbar");
-    function updateAccent() {
-      sidebar.style.background = window.parent.getAccent("rgba(50, 50, 50, 0.6)");
-      statusbar.style.background = window.parent.getAccent("rgba(50, 50, 50, 0.6)");
-      requestAnimationFrame(updateAccent);
-    }
-    updateAccent();
-
     var editor = CodeMirror(document.getElementById('editor'), {
       lineNumbers: true,
       mode: "javascript",
@@ -185,27 +186,27 @@
             types: [
               {
                 description: 'JavaScript Files',
-                accept: { 'application/javascript': ['.js'] }
+                accept: {'application/javascript': ['.js']}
               },
               {
                 description: 'HTML Files',
-                accept: { 'text/html': ['.html', '.htm'] }
+                accept: {'text/html': ['.html', '.htm']}
               },
               {
                 description: 'CSS Files',
-                accept: { 'text/css': ['.css'] }
+                accept: {'text/css': ['.css']}
               },
               {
                 description: 'JSON Files',
-                accept: { 'application/json': ['.json'] }
+                accept: {'application/json': ['.json']}
               },
               {
                 description: 'Markdown Files',
-                accept: { 'text/markdown': ['.md'] }
+                accept: {'text/markdown': ['.md']}
               },
               {
                 description: 'Plain Text',
-                accept: { 'text/plain': ['.txt'] }
+                accept: {'text/plain': ['.txt']}
               }
             ]
           });
@@ -245,27 +246,27 @@
           types: [
             {
               description: 'JavaScript Files',
-              accept: { 'application/javascript': ['.js'] }
+              accept: {'application/javascript': ['.js']}
             },
             {
               description: 'HTML Files',
-              accept: { 'text/html': ['.html', '.htm'] }
+              accept: {'text/html': ['.html', '.htm']}
             },
             {
               description: 'CSS Files',
-              accept: { 'text/css': ['.css'] }
+              accept: {'text/css': ['.css']}
             },
             {
               description: 'JSON Files',
-              accept: { 'application/json': ['.json'] }
+              accept: {'application/json': ['.json']}
             },
             {
               description: 'Markdown Files',
-              accept: { 'text/markdown': ['.md'] }
+              accept: {'text/markdown': ['.md']}
             },
             {
               description: 'Plain Text',
-              accept: { 'text/plain': ['.txt'] }
+              accept: {'text/plain': ['.txt']}
             }
           ]
         });
