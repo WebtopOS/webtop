@@ -56,7 +56,7 @@
         }
 
         getWindowByTitle(args) {
-            const windows = document.querySelectorAll('#windows .window');
+            const windows = window.parent.document.querySelectorAll('#windows .window');
             for (const win of windows) {
                 const titleEl = win.querySelector('.window-title');
                 if (titleEl && titleEl.textContent.trim() === args.TITLE) {
@@ -67,7 +67,7 @@
         }
 
         focusWindow(args) {
-            const windows = document.querySelectorAll('#windows .window');
+            const windows = window.parent.document.querySelectorAll('#windows .window');
             for (const win of windows) {
                 const titleEl = win.querySelector('.window-title');
                 if (titleEl && titleEl.textContent.trim() === args.TITLE) {
