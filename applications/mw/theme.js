@@ -13,7 +13,7 @@
                 name: 'Webtop Tools',
                 blocks: [
                     { 
-                      blockType: Scratch.Blocktype.LABEL,
+                      blockType: Scratch.BlockType.LABEL,
                       text: "Packaged projects only!"
                     },
                     {
