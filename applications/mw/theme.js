@@ -14,7 +14,7 @@
                 blocks: [
                     { 
                       blockType: Scratch.BlockType.LABEL,
-                      text: "Packaged projects only!"
+                      text: "Packaged projects in Webtop only!"
                     },
                     {
                         opcode: 'newWindow',
