@@ -132,7 +132,6 @@
           font-size: 0.7rem;
           font-weight: 600;
           color: var(--text-dim);
-          text-transform: uppercase;
           letter-spacing: 0.5px;
           white-space: nowrap;
         }
