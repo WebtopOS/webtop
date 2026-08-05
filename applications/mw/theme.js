@@ -12,7 +12,7 @@
                 id: 'toolsforwebtop',
                 name: 'Webtop Tools',
                 blocks: [
-                    { blockType: Scratch.Blocktype.LABEL
+                    { blockType: Scratch.Blocktype.LABEL,
                       text: "Packaged projects only!"
                     }
                     {
