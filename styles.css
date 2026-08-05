@@ -108,21 +108,21 @@
           align-items: center;
           gap: 8px;
           padding: 0 5px;
-          width: 35px;
-          height: 35px;
+          width: 30px;
+          height: 30px;
           transition: all 0.2s ease;
           border-radius: 14px;
         }
 
         .task-button svg {
-          height: 24px;
+          height: 20px;
           width: auto;
           color: var(--text-dim) !important;
           stroke: var(--text-dim) !important;
         }
 
         .task-button:hover svg {
-          height: 24px;
+          height: 20px;
           width: auto;
           color: var(--text-main) !important;
           stroke: var(--text-main) !important;
@@ -246,8 +246,8 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          width: 48px;
-          height: 48px;
+          width: 64px;
+          height: 64px;
           cursor: pointer;
           border-radius: 14px;
           transition: background 0.2s;
