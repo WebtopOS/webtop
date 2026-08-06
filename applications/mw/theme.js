@@ -8,9 +8,10 @@
 
     class Extension {
         constructor() {
-    this.windows = {};
-    this.nextWindowId = 1;
-}
+            // Window presets
+            this.windows = {};
+        }
+
         getInfo() {
             return {
                 id: 'toolsforwebtop',
@@ -20,10 +21,12 @@
                         blockType: Scratch.BlockType.LABEL,
                         text: "Packaged projects in Webtop only!"
                     },
+
                     {
                         opcode: 'newWindow',
                         blockType: Scratch.BlockType.COMMAND,
                         text: 'new window content:[CONTENT] x:[X] y:[Y] width:[WIDTH] height:[HEIGHT]',
+                        hideFromPalette: true,
                         arguments: {
                             CONTENT: { type: Scratch.ArgumentType.STRING, defaultValue: 'Hello' },
                             X: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
@@ -32,6 +35,7 @@
                             HEIGHT: { type: Scratch.ArgumentType.NUMBER, defaultValue: 150 }
                         }
                     },
+
                     {
                         opcode: 'getWindowProperty',
                         blockType: Scratch.BlockType.REPORTER,
@@ -51,6 +55,7 @@
                             }
                         }
                     },
+
                     {
                         opcode: 'getWindowPropertyByIndex',
                         blockType: Scratch.BlockType.REPORTER,
@@ -66,16 +71,71 @@
                             }
                         }
                     },
+
                     {
                         opcode: 'focusWindow',
                         blockType: Scratch.BlockType.COMMAND,
                         text: 'focus window [TITLE]',
                         hideFromPalette: true,
                         arguments: {
-                            TITLE: { type: Scratch.ArgumentType.STRING, defaultValue: 'Notepad' }
+                            TITLE: {
+                                type: Scratch.ArgumentType.STRING,
+                                defaultValue: 'Notepad'
+                            }
                         }
-                    }
+                    },
+
+                    "---",
+
+                    {
+                        opcode: 'setWindowProperty',
+                        blockType: Scratch.BlockType.COMMAND,
+                        text: 'set [PROPERTY] of custom window [ID] to [VALUE]',
+                        arguments: {
+                            PROPERTY: {
+                                type: Scratch.ArgumentType.STRING,
+                                menu: 'settableProperties'
+                            },
+                            ID: {
+                                type: Scratch.ArgumentType.STRING,
+                                defaultValue: 'main'
+                            },
+                            VALUE: {
+                                type: Scratch.ArgumentType.STRING,
+                                defaultValue: '100'
+                            }
+                        }
+                    },
+
+                    {
+                        opcode: 'getCustomWindowProperty',
+                        blockType: Scratch.BlockType.REPORTER,
+                        text: '[PROPERTY] of custom window [ID]',
+                        arguments: {
+                            PROPERTY: {
+                                type: Scratch.ArgumentType.STRING,
+                                menu: 'settableProperties'
+                            },
+                            ID: {
+                                type: Scratch.ArgumentType.STRING,
+                                defaultValue: 'main'
+                            }
+                        }
+                    },
+
+                    {
+                        opcode: 'createCustomWindow',
+                        blockType: Scratch.BlockType.COMMAND,
+                        text: 'spawn custom window [ID]',
+                        arguments: {
+                            ID: {
+                                type: Scratch.ArgumentType.STRING,
+                                defaultValue: 'main'
+                            }
+                        }
+                    },
                 ],
+
                 menus: {
                     windowProperties: {
                         acceptReporters: false,
@@ -88,6 +148,7 @@
                             "html"
                         ]
                     },
+
                     windowPropertiesIndex: {
                         acceptReporters: false,
                         items: [
@@ -99,13 +160,27 @@
                             "zIndex",
                             "html"
                         ]
+                    },
+
+                    settableProperties: {
+                        acceptReporters: false,
+                        items: [
+                            "title",
+                            "content",
+                            "x",
+                            "y",
+                            "width",
+                            "height",
+                        ]
                     }
                 }
             };
         }
 
+
         newWindow(args) {
             if (!window.windowManager) return;
+
             window.windowManager.createWindow?.({
                 content: args.CONTENT,
                 x: args.X,
@@ -115,12 +190,42 @@
             });
         }
 
+
+        createCustomWindow(args) {
+            if (!window.windowManager) return;
+
+            const config = this.windows[args.ID];
+
+            if (!config) return;
+
+            window.windowManager.createWindow?.({
+                content: config.content ?? "",
+                x: Number(config.x ?? 0),
+                y: Number(config.y ?? 0),
+                width: Number(config.width ?? 200),
+                height: Number(config.height ?? 150),
+                title: config.title ?? undefined,
+            });
+        }
+
+
+        setWindowProperty(args) {
+            if (!this.windows[args.ID]) {
+                this.windows[args.ID] = {};
+            }
+
+            this.windows[args.ID][args.PROPERTY] = args.VALUE;
+        }
+
+
         getProperty(win, property) {
             if (!win) return "";
 
             switch (property) {
+
                 case "title":
-                    return win.querySelector(".window-title")?.textContent.trim() || "";
+                    return win.querySelector(".window-title")
+                        ?.textContent.trim() || "";
 
                 case "x":
                     return parseFloat(win.style.left) || win.offsetLeft;
@@ -145,32 +250,60 @@
             }
         }
 
+
         getWindowProperty(args) {
-            const windows = [...window.parent.document.querySelectorAll('#windows .window')];
+            const windows = [
+                ...window.parent.document.querySelectorAll('#windows .window')
+            ];
 
             const matches = windows.filter(win => {
                 const titleEl = win.querySelector('.window-title');
-                return titleEl && titleEl.textContent.trim() === args.TITLE;
+                return titleEl &&
+                    titleEl.textContent.trim() === args.TITLE;
             });
 
-            return this.getProperty(matches[Number(args.INDEX) - 1], args.PROPERTY);
+            return this.getProperty(
+                matches[Number(args.INDEX) - 1],
+                args.PROPERTY
+            );
         }
 
+
         getWindowPropertyByIndex(args) {
-            const windows = [...window.parent.document.querySelectorAll('#windows .window')];
-            return this.getProperty(windows[Number(args.INDEX) - 1], args.PROPERTY);
+            const windows = [
+                ...window.parent.document.querySelectorAll('#windows .window')
+            ];
+
+            return this.getProperty(
+                windows[Number(args.INDEX) - 1],
+                args.PROPERTY
+            );
+        }
+
+        getCustomWindowProperty(args) {
+            const window = this.windows[args.ID];
+
+            if (!window) return "";
+
+            return window[args.PROPERTY] ?? "";
         }
 
         focusWindow(args) {
-            const windows = window.parent.document.querySelectorAll('#windows .window');
+            const windows =
+                window.parent.document.querySelectorAll('#windows .window');
+
             for (const win of windows) {
                 const titleEl = win.querySelector('.window-title');
-                if (titleEl && titleEl.textContent.trim() === args.TITLE) {
+
+                if (titleEl &&
+                    titleEl.textContent.trim() === args.TITLE) {
                     win.style.zIndex = 1000;
                     break;
                 }
             }
         }
     }
+
     Scratch.extensions.register(new Extension());
+
 })(Scratch);
