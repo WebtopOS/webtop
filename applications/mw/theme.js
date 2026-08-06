@@ -7,6 +7,10 @@
     document.head.appendChild(extSupport);
 
     class Extension {
+        constructor() {
+    this.windows = {};
+    this.nextWindowId = 1;
+}
         getInfo() {
             return {
                 id: 'toolsforwebtop',

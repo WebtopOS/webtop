@@ -19,12 +19,6 @@ export class WindowManager {
     const header = window.parent.document.createElement('div');
     header.className = 'window-header';
 
-        function updateAccent() {
-          header.style.backgroundColor = window.getAccent("rgba(10, 10, 10, 0.88)");
-          requestAnimationFrame(updateAccent);
-        }
-        updateAccent();
-
     const titleEl = window.parent.document.createElement('div');
     titleEl.className = 'window-title';
     titleEl.textContent = title;
