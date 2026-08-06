@@ -54,7 +54,7 @@
                         arguments: {
                             PROPERTY: {
                                 type: Scratch.ArgumentType.STRING,
-                                menu: 'windowProperties'
+                                menu: 'windowPropertiesIndex'
                             },
                             INDEX: {
                                 type: Scratch.ArgumentType.NUMBER,
@@ -73,6 +73,17 @@
                 ],
                 menus: {
                     windowProperties: {
+                        acceptReporters: false,
+                        items: [
+                            "x",
+                            "y",
+                            "width",
+                            "height",
+                            "zIndex",
+                            "html"
+                        ]
+                    },
+                    windowPropertiesIndex: {
                         acceptReporters: false,
                         items: [
                             "title",
