@@ -66,6 +66,7 @@
                         opcode: 'focusWindow',
                         blockType: Scratch.BlockType.COMMAND,
                         text: 'focus window [TITLE]',
+                        hideFromPalette: true,
                         arguments: {
                             TITLE: { type: Scratch.ArgumentType.STRING, defaultValue: 'Notepad' }
                         }
