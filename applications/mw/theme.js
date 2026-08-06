@@ -48,6 +48,21 @@
                         }
                     },
                     {
+                        opcode: 'getWindowPropertyByIndex',
+                        blockType: Scratch.BlockType.REPORTER,
+                        text: '[PROPERTY] of window [INDEX]',
+                        arguments: {
+                            PROPERTY: {
+                                type: Scratch.ArgumentType.STRING,
+                                menu: 'windowProperties'
+                            },
+                            INDEX: {
+                                type: Scratch.ArgumentType.NUMBER,
+                                defaultValue: 1
+                            }
+                        }
+                    },
+                    {
                         opcode: 'focusWindow',
                         blockType: Scratch.BlockType.COMMAND,
                         text: 'focus window [TITLE]',
@@ -84,18 +99,10 @@
             });
         }
 
-        getWindowProperty(args) {
-            const windows = [...window.parent.document.querySelectorAll('#windows .window')];
-
-            const matches = windows.filter(win => {
-                const titleEl = win.querySelector('.window-title');
-                return titleEl && titleEl.textContent.trim() === args.TITLE;
-            });
-
-            const win = matches[Number(args.INDEX) - 1];
+        getProperty(win, property) {
             if (!win) return "";
 
-            switch (args.PROPERTY) {
+            switch (property) {
                 case "title":
                     return win.querySelector(".window-title")?.textContent.trim() || "";
 
@@ -120,6 +127,22 @@
                 default:
                     return "";
             }
+        }
+
+        getWindowProperty(args) {
+            const windows = [...window.parent.document.querySelectorAll('#windows .window')];
+
+            const matches = windows.filter(win => {
+                const titleEl = win.querySelector('.window-title');
+                return titleEl && titleEl.textContent.trim() === args.TITLE;
+            });
+
+            return this.getProperty(matches[Number(args.INDEX) - 1], args.PROPERTY);
+        }
+
+        getWindowPropertyByIndex(args) {
+            const windows = [...window.parent.document.querySelectorAll('#windows .window')];
+            return this.getProperty(windows[Number(args.INDEX) - 1], args.PROPERTY);
         }
 
         focusWindow(args) {
