@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>develop</title>
-    <style>
-    </style>
 </head>
 <body>
 
-    <div class="container">
+    <div>
         <form id="redirectForm" onsubmit="redirectToUrl(event)">
-            <input type="url" id="urlInput" placeholder="https://example.com" required>
-            <button type="submit">test</button>
+            <input type="url" id="urlInput" placeholder="https://example.com">
+            <button type="submit">test URL</button>
         </form>
+
+        <br>
+
+        <div>
+            <input type="file" id="fileInput">
+            <button type="button" onclick="loadLocalFile()">test File</button>
+        </div>
     </div>
 
     <script>
@@ -28,6 +33,18 @@
                 }
                 
                 window.location.href = targetUrl;
+            }
+        }
+
+        function loadLocalFile() {
+            const fileInput = document.getElementById('fileInput');
+            
+            if (fileInput.files && fileInput.files[0]) {
+                const file = fileInput.files[0];
+                const fileUrl = URL.createObjectURL(file);
+                window.location.href = fileUrl;
+            } else {
+                alert('Please select a file first.');
             }
         }
     </script>
