@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>develop</title>
+    <style>
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <form id="redirectForm" onsubmit="redirectToUrl(event)">
+            <input type="url" id="urlInput" placeholder="https://example.com" required>
+            <button type="submit">test</button>
+        </form>
+    </div>
+
+    <script>
+        function redirectToUrl(event) {
+            event.preventDefault();
+            
+            let targetUrl = document.getElementById('urlInput').value.trim();
+            
+            if (targetUrl) {
+                if (!targetUrl.startsWith('http://') && !targetUrl.startsWith('https://')) {
+                    targetUrl = 'https://' + targetUrl;
+                }
+                
+                window.location.href = targetUrl;
+            }
+        }
+    </script>
+
+</body>
+</html>
