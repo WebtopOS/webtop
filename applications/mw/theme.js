@@ -102,7 +102,7 @@
                             },
                             VALUE: {
                                 type: Scratch.ArgumentType.STRING,
-                                defaultValue: '100'
+                                defaultValue: 'Window'
                             }
                         }
                     },
