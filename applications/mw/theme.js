@@ -12,9 +12,9 @@
                 id: 'toolsforwebtop',
                 name: 'Webtop Tools',
                 blocks: [
-                    { 
-                      blockType: Scratch.BlockType.LABEL,
-                      text: "Packaged projects in Webtop only!"
+                    {
+                        blockType: Scratch.BlockType.LABEL,
+                        text: "Packaged projects in Webtop only!"
                     },
                     {
                         opcode: 'newWindow',
@@ -29,11 +29,22 @@
                         }
                     },
                     {
-                        opcode: 'getWindowByTitle',
+                        opcode: 'getWindowProperty',
                         blockType: Scratch.BlockType.REPORTER,
-                        text: 'window with title [TITLE]',
+                        text: '[PROPERTY] of window [INDEX] with title [TITLE]',
                         arguments: {
-                            TITLE: { type: Scratch.ArgumentType.STRING, defaultValue: 'Notepad' }
+                            PROPERTY: {
+                                type: Scratch.ArgumentType.STRING,
+                                menu: 'windowProperties'
+                            },
+                            INDEX: {
+                                type: Scratch.ArgumentType.NUMBER,
+                                defaultValue: 1
+                            },
+                            TITLE: {
+                                type: Scratch.ArgumentType.STRING,
+                                defaultValue: 'Notepad'
+                            }
                         }
                     },
                     {
@@ -44,7 +55,21 @@
                             TITLE: { type: Scratch.ArgumentType.STRING, defaultValue: 'Notepad' }
                         }
                     }
-                ]
+                ],
+                menus: {
+                    windowProperties: {
+                        acceptReporters: false,
+                        items: [
+                            "title",
+                            "x",
+                            "y",
+                            "width",
+                            "height",
+                            "zIndex",
+                            "html"
+                        ]
+                    }
+                }
             };
         }
 
@@ -59,15 +84,42 @@
             });
         }
 
-        getWindowByTitle(args) {
-            const windows = window.parent.document.querySelectorAll('#windows .window');
-            for (const win of windows) {
+        getWindowProperty(args) {
+            const windows = [...window.parent.document.querySelectorAll('#windows .window')];
+
+            const matches = windows.filter(win => {
                 const titleEl = win.querySelector('.window-title');
-                if (titleEl && titleEl.textContent.trim() === args.TITLE) {
+                return titleEl && titleEl.textContent.trim() === args.TITLE;
+            });
+
+            const win = matches[Number(args.INDEX) - 1];
+            if (!win) return "";
+
+            switch (args.PROPERTY) {
+                case "title":
+                    return win.querySelector(".window-title")?.textContent.trim() || "";
+
+                case "x":
+                    return parseFloat(win.style.left) || win.offsetLeft;
+
+                case "y":
+                    return parseFloat(win.style.top) || win.offsetTop;
+
+                case "width":
+                    return parseFloat(win.style.width) || win.offsetWidth;
+
+                case "height":
+                    return parseFloat(win.style.height) || win.offsetHeight;
+
+                case "zIndex":
+                    return parseInt(getComputedStyle(win).zIndex) || 0;
+
+                case "html":
                     return win.outerHTML;
-                }
+
+                default:
+                    return "";
             }
-            return '';
         }
 
         focusWindow(args) {
