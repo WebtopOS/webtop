@@ -324,9 +324,9 @@
           padding: 10px;
         }
 
-        .start-menu.attatched {
+        #start-menu.attatched {
           left: 0px;
-          border-radius: 14px 14px 0px 0px;
+          border-radius: 0px 14px 0px 0px;
         }
 
         #start-menu[hidden] {
