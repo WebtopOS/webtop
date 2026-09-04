@@ -199,6 +199,7 @@
           grid-template-rows: repeat(auto-fill, 68px);
           pointer-events: none;
           height: 300px;
+          gap: 8px;
         }
 
         .desktop-icon {
@@ -251,6 +252,7 @@
           border-radius: 14px;
           transition: background 0.2s;
           pointer-events: auto;
+          padding: 4px;
         }
 
         .start-icon svg {
@@ -290,6 +292,7 @@
           border: 1px solid #333;
           z-index: 9999;
           border-radius: 14px 14px 0px 0px;
+          padding: 5px;
         }
 
         #start-menu[hidden] {
