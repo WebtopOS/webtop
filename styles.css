@@ -313,15 +313,20 @@
         .start-menu {
           position: absolute;
           bottom: 48px;
-          left: 72px;
+          left: 44px;
           width: 300px;
           height: auto;
           max-height: 80vh;
           background: var(--glass-dark-alt);
           border: 1px solid var(--border);
           z-index: 9999;
-          border-radius: 14px 14px 0px 0px;
+          border-radius: 14px 14px 14px 14px;
           padding: 10px;
+        }
+
+        .start-menu.attatched {
+          left: 0px;
+          border-radius: 14px 14px 0px 0px;
         }
 
         #start-menu[hidden] {
