@@ -103,6 +103,11 @@
           border: none;
         }
 
+        #app-button {
+          padding: 20px;
+          background: var(--glass-dark-alt);
+        }
+
         .start-item {
           display: flex;
           flex-direction: row;

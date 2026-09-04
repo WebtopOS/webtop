@@ -48,6 +48,7 @@ export class WindowManager {
 
 const taskButton = window.parent.document.createElement('button');
 taskButton.className = 'task-button';
+taskButton.id = 'app-button';
 
 const appLabel = window.parent.document.createElement('span');
 appLabel.className = 'app-label';
