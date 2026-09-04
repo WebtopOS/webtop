@@ -110,11 +110,11 @@ this.taskList.appendChild(taskButton);
   });
 
   if (touching) {
-    taskbar.classList.add("attached");
+    taskbar.classList.remove("attached");
     return;
   }
 
-  taskbar.classList.remove("attached");
+  taskbar.classList.add("attached");
 }
   
 setupWindowEvents(id, winEl, header) {
