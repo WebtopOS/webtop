@@ -328,8 +328,8 @@
           display: flex;
           align-items: center;
           flex-grow: 1;
-          background: #000;
-          border: 1px solid #333;
+          background: var(--glass-dark);
+          border: 1px solid var(--border);
           padding: 4px 8px;
           border-radius: 14px;
         }
