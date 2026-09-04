@@ -180,6 +180,10 @@
           cursor: default;
         }
 
+        .status-group.attached {
+          padding: 0px;
+        }
+
         .time-module {
           display: flex;
           flex-direction: row;

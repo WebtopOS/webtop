@@ -95,6 +95,7 @@ this.taskList.appendChild(taskButton);
   checkTaskbarContact() {
   const taskbar = document.querySelector(".taskbar");
   const start = document.querySelector(".start-menu");
+  const status = document.querySelector(".status-group");
   const windows = document.querySelectorAll(".window");
 
   let touching = false;
@@ -113,11 +114,13 @@ this.taskList.appendChild(taskButton);
   if (touching) {
     taskbar.classList.add("attached");
     start.classList.add("attached");
+    status.classList.add("attached");
     return;
   }
 
   taskbar.classList.remove("attached");
   start.classList.remove("attached");
+  status.classList.remove("attached");
 }
   
 setupWindowEvents(id, winEl, header) {
