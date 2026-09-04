@@ -33,7 +33,6 @@ export class WindowManager {
     titleGroup.className = 'window-title-group';
     titleGroup.append(...(appIcon ? [appIcon] : []), titleEl)
 
-
     const controls = window.parent.document.createElement('div');
     controls.className = 'window-controls';
 
