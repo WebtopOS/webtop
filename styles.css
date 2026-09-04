@@ -58,7 +58,7 @@
           bottom: 0;
           left: 0;
           right: 0;
-          height: 42px;
+          height: 44px;
           background: var(--glass-dark);
           backdrop-filter: blur(30px);
           border-top: 1px solid var(--border);
