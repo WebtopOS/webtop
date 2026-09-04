@@ -415,8 +415,9 @@
           object-fit: contain;
           flex-shrink: 0;
           display: block;
-          margin-left: auto;
-          margin-right: auto;
+          margin-inline: auto;
+          margin-bottom: 4px;
+          max-width: 100%;
         }
 
         .window-title {
