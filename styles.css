@@ -417,11 +417,10 @@
         }
 
         .window-title {
-          flex: 1;
           color: #fff;
           font-size: 14px;
           padding: 5px;
-          text-align: center;
+          text-align: left;
         }
 
         .window-title-group {
