@@ -409,6 +409,13 @@
           padding: 2px;
         }
 
+        .window-header img {
+          height: 16px;
+          width: auto;
+          object-fit: contain;
+          flex-shrink: 0;
+        }
+
         .window-title {
           flex: 1;
           color: #fff;
