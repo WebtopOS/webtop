@@ -200,6 +200,7 @@
           pointer-events: none;
           height: 300px;
           gap: 8px;
+          padding-bottom: 10px;
         }
 
         .desktop-icon {
@@ -285,14 +286,14 @@
           position: absolute;
           bottom: 48px;
           left: 72px;
-          width: 320px;
+          width: 300px;
           height: auto;
           max-height: 80vh;
           background: #1a1a1a;
           border: 1px solid #333;
           z-index: 9999;
           border-radius: 14px 14px 0px 0px;
-          padding: 5px;
+          padding: 10px;
         }
 
         #start-menu[hidden] {
@@ -303,7 +304,7 @@
           display: flex;
           align-items: center;
           gap: 12px;
-          padding: 10px;
+          padding-top: 10px;
           border-top: 1px solid #333;
         }
 
