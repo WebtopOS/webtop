@@ -8,7 +8,6 @@
 
     class Extension {
         constructor() {
-            // Window presets
             this.windows = {};
         }
 
