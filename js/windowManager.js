@@ -50,10 +50,14 @@ const taskButton = window.parent.document.createElement('button');
 taskButton.className = 'task-button';
 taskButton.id = 'app-button';
 
+const appIcon = window.parent.document.createElement('img');
+appIcon.src = icon;
+
 const appLabel = window.parent.document.createElement('span');
 appLabel.className = 'app-label';
 appLabel.textContent = title;
 
+taskButton.appendChild(appIcon);
 taskButton.appendChild(appLabel);
 
 this.taskList.appendChild(taskButton);

@@ -97,6 +97,7 @@ document.querySelectorAll('.desktop-icon').forEach(icon => {
     const url = icon.getAttribute('data-url');
     const width = icon.getAttribute('data-width');
     const height = icon.getAttribute('data-height');
+    const imgSrc = icon.querySelector('img')?.getAttribute('src');
     const betaUrl = `beta${url.replace(/^\./, '')}`;
 
     const id = 'window_' + title
@@ -108,6 +109,7 @@ document.querySelectorAll('.desktop-icon').forEach(icon => {
     if (e.shiftKey) {
       windowManager.createWindow({
         title: title,
+        icon: imgSrc,
         content: `<iframe src="${betaUrl}" id="${id}" width="100%" height="100%" style="border:none;" allowtransparency="true"></iframe>`,
         x: 200,
         y: 150,
@@ -117,6 +119,7 @@ document.querySelectorAll('.desktop-icon').forEach(icon => {
     } else {
       windowManager.createWindow({
         title: title,
+        icon: imgSrc,
         content: `<iframe src="${url}" id="${id}" width="100%" height="100%" style="border:none;" allowtransparency="true"></iframe>`,
         x: 200,
         y: 150,
@@ -127,6 +130,7 @@ document.querySelectorAll('.desktop-icon').forEach(icon => {
     if (title == "Doom") {
       windowManager.createWindow({
         title: "Terminal [Doom]",
+        icon: imgSrc,
         content: `<iframe src="./applications/doom/term.html" id="window_terminal" width="100%" height="100%" style="border:none;" allowtransparency="true"></iframe>`,
         x: 200,
         y: 150,
@@ -149,6 +153,7 @@ document.querySelectorAll('.start-icon').forEach(icon => {
     const url = icon.getAttribute('data-url');
     const width = icon.getAttribute('data-width');
     const height = icon.getAttribute('data-height');
+    const imgSrc = icon.querySelector('img')?.getAttribute('src');
     const betaUrl = `beta${url.replace(/^\./, '')}`;
 
     const id = 'window_' + title
@@ -163,6 +168,7 @@ document.querySelectorAll('.start-icon').forEach(icon => {
     if (e.shiftKey) {
       windowManager.createWindow({
         title: title,
+        icon: imgSrc,
         content: `<iframe src="${betaUrl}" id="${id}" width="100%" height="100%" style="border:none;" allowtransparency="true"></iframe>`,
         x: 200,
         y: 150,
@@ -172,7 +178,9 @@ document.querySelectorAll('.start-icon').forEach(icon => {
     } else {
       windowManager.createWindow({
         title: title,
+        icon: imgSrc,
         content: `<iframe src="${url}" id="${id}" width="100%" height="100%" style="border:none;" allowtransparency="true"></iframe>`,
+        icon: imgSrc,
         x: 200,
         y: 150,
         width: width,
@@ -182,6 +190,7 @@ document.querySelectorAll('.start-icon').forEach(icon => {
     if (title == "Doom") {
       windowManager.createWindow({
         title: "Terminal [Doom]",
+        icon: imgSrc,
         content: `<iframe src="./applications/doom/term.html" id="window_terminal" width="100%" height="100%" style="border:none;" allowtransparency="true"></iframe>`,
         x: 200,
         y: 150,
