@@ -93,7 +93,7 @@ this.taskList.appendChild(taskButton);
   }
 
   checkTaskbarContact() {
-  const taskbar = document.getElementById("taskbar");
+  const taskbar = document.querySelector(".taskbar");
   const windows = document.querySelectorAll(".window");
 
   let touching = false;
