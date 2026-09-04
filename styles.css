@@ -108,6 +108,11 @@
           background: var(--glass-dark-alt);
         }
 
+        #apps-menu {
+          padding: 3px 8px;
+          background: var(--glass-dark-alt);
+        }
+
         .start-item {
           display: flex;
           flex-direction: row;
