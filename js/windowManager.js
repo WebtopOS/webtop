@@ -19,9 +19,19 @@ export class WindowManager {
     const header = window.parent.document.createElement('div');
     header.className = 'window-header';
 
+    if (icon) {
+    const appIcon = window.parent.document.createElement('img');
+    appIcon.src = icon;
+    }
+
     const titleEl = window.parent.document.createElement('div');
     titleEl.className = 'window-title';
     titleEl.textContent = title;
+
+    const titleGroup = window.parent.document.createElement('div');
+    titleGroup.className = 'window-title-group';
+    titleGroup.append(appIcon, titleEl);
+
 
     const controls = window.parent.document.createElement('div');
     controls.className = 'window-controls';
@@ -32,14 +42,8 @@ export class WindowManager {
     const closeBtn = this.createWindowButton(`x`);
     const backBtn = this.createWindowButton(`arrow-left`);
 
-    let appIcon = null;
-    if (icon) {
-    appIcon = window.parent.document.createElement('img');
-    appIcon.src = icon;
-    }
-
     controls.append(minimizeBtn, closeBtn);
-    header.append(maximizeBtn, shadeBtn, ...(appIcon ? [appIcon] : []), titleEl, controls);
+    header.append(maximizeBtn, shadeBtn, titleGoup, controls);
 
     const contentEl = window.parent.document.createElement('div');
     contentEl.className = 'window-content';
