@@ -56,8 +56,6 @@
         .taskbar {
           position: fixed;
           bottom: 0;
-          left: 0;
-          right: 0;
           height: 44px;
           background: var(--glass-dark);
           backdrop-filter: blur(30px);
