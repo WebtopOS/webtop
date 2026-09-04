@@ -315,6 +315,7 @@
           color: inherit;
           padding-left: 5px;
           flex: 1;
+          font-size: 14px;
         }
 
         .search-section {
