@@ -106,7 +106,7 @@
         }
 
         .task-button img {
-          height: 24px;
+          height: 22px;
           width: auto;
           object-fit: contain;
           flex-shrink: 0;
@@ -151,10 +151,8 @@
         }
 
         .app-label {
-          font-size: 0.7rem;
-          font-weight: 600;
+          font-size: 14px;
           color: var(--text-dim);
-          letter-spacing: 0.5px;
           white-space: nowrap;
         }
 
