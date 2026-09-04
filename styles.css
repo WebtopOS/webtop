@@ -426,6 +426,7 @@
 
         .window-title-group {
           flex: 1;
+          text-align: center;
         }
 
         .window-controls {
