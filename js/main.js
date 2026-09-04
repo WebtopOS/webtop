@@ -192,6 +192,27 @@ document.querySelectorAll('.start-icon').forEach(icon => {
   });
 });
 
+const searchInput = document.querySelector('.search-input');
+
+if (searchInput) {
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    const appIcons = document.querySelectorAll('.app-grid .start-icon');
+
+    appIcons.forEach(icon => {
+      const titleAttr = icon.getAttribute('data-title');
+      if (!titleAttr) return;
+      
+      const title = titleAttr.toLowerCase();
+      if (title.includes(query)) {
+        icon.style.display = ''; 
+      } else {
+        icon.style.display = 'none'; 
+      }
+    });
+  });
+}
+
 const optionMenu = document.getElementById('settings');
 
 optionMenu.addEventListener('click', (e) => {
