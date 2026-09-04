@@ -105,6 +105,13 @@
           border: none;
         }
 
+        .task-button img {
+          width: 20px;
+          height: 20px;
+          object-fit: contain;
+          flex-shrink: 0;
+        }
+
         #app-button {
           padding: 18px;
           background: var(--glass-dark-alt);
