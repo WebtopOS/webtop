@@ -39,7 +39,7 @@ export class WindowManager {
     }
 
     controls.append(minimizeBtn, closeBtn);
-    header.append(maximizeBtn, shadeBtn, appIcon, titleEl, controls);
+    header.append(maximizeBtn, shadeBtn, ...(appIcon ? [appIcon] : []), titleEl, controls);
 
     const contentEl = window.parent.document.createElement('div');
     contentEl.className = 'window-content';
