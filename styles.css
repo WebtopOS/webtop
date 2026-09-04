@@ -190,6 +190,7 @@
           grid-template-rows: repeat(auto-fill, 68px);
           height: calc(100% - 150px);
           pointer-events: none;
+          padding: 10px;
         }
 
         .app-grid {
