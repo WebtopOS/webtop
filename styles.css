@@ -365,7 +365,7 @@
           flex-grow: 1;
           background: var(--glass-dark);
           border: 1px solid var(--border);
-          padding: 4px 8px;
+          padding: 3px 7px;
           border-radius: 14px;
         }
 
