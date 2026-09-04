@@ -124,7 +124,7 @@
         }
 
         #apps-menu {
-          padding: 4px 8px;
+          padding: 3px 7px;
           background: var(--glass-dark-alt);
           border: 1px solid var(--border-light);
         }
