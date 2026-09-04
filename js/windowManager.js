@@ -149,6 +149,7 @@ setupWindowEvents(id, winEl, header) {
 
     winEl.style.left = `${e.clientX - clickDifferenceX}px`;
     winEl.style.top  = `${e.clientY - clickDifferenceY}px`;
+
   });
 
   window.parent.document.addEventListener('mouseup', () => {
@@ -156,6 +157,8 @@ setupWindowEvents(id, winEl, header) {
     mouseDown = false;
 
     if (iframe) iframe.style.pointerEvents = 'auto';
+
+    this.checkTaskbarContact();
   });
 }
 
