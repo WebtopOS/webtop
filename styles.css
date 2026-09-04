@@ -205,6 +205,7 @@
           height: calc(100% - 150px);
           pointer-events: none;
           padding: 10px;
+          gap: 10px;
         }
 
         .app-grid {
@@ -229,6 +230,7 @@
           border-radius: 14px;
           transition: background 0.2s;
           pointer-events: auto;
+          padding: 4px;
         }
 
         .desktop-icon svg {
