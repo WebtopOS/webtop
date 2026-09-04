@@ -1,6 +1,7 @@
         :root {
           --bg-url: url('https://kylekart.github.io/webtop/backgrounds/borealis2.png');
           --glass-dark: rgba(10, 10, 10, 0.88);
+          --glass-dark-alt: rgba(20, 20, 20, 0.88);
           --border: rgba(255, 255, 255, 0.12);
           --text-main: #ffffff;
           --text-dim: rgba(255, 255, 255, 0.5);
@@ -290,7 +291,7 @@
           width: 300px;
           height: auto;
           max-height: 80vh;
-          background: #1a1a1a;
+          background: var(--glass-dark-alt);
           border: 1px solid #333;
           z-index: 9999;
           border-radius: 14px 14px 0px 0px;
@@ -356,7 +357,7 @@
           position: absolute;
           min-width: 300px;
           min-height: 32px;
-          background: rgba(20, 20, 20, 0.6);
+          background: var(--glass-dark-alt);
           backdrop-filter: blur(10px);
           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
           display: flex;
