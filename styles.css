@@ -71,6 +71,13 @@
           right: 42px;
         }
 
+        #taskbar.attached {
+          left: 0;
+          right: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+
         .shelf-start {
           flex: 1;
           display: flex;
