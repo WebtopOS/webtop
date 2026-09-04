@@ -419,7 +419,6 @@
         .window-title {
           color: #fff;
           font-size: 14px;
-          padding: 5px;
           text-align: left;
         }
 
@@ -427,7 +426,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          gap: 10px;
+          gap: 4px;
           flex: 1;
           text-align: center;
         }
