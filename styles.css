@@ -425,6 +425,10 @@
         }
 
         .window-title-group {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
           flex: 1;
           text-align: center;
         }
