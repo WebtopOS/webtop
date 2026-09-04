@@ -3,6 +3,7 @@
           --glass-dark: rgba(10, 10, 10, 0.88);
           --glass-dark-alt: rgba(20, 20, 20, 0.88);
           --border: rgba(255, 255, 255, 0.12);
+          --border-light: rgba(255, 255, 255, 0.04);
           --text-main: #ffffff;
           --text-dim: rgba(255, 255, 255, 0.5);
           --accent: #4285f4;
@@ -106,11 +107,13 @@
         #app-button {
           padding: 18px;
           background: var(--glass-dark-alt);
+          border: 1px solid var(--border-light);
         }
 
         #apps-menu {
           padding: 3px 8px;
           background: var(--glass-dark-alt);
+          border: 1px solid var(--border-light);
         }
 
         .start-item {
