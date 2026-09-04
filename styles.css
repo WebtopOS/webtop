@@ -292,7 +292,7 @@
           height: auto;
           max-height: 80vh;
           background: var(--glass-dark-alt);
-          border: 1px solid #333;
+          border: 1px solid var(--border);
           z-index: 9999;
           border-radius: 14px 14px 0px 0px;
           padding: 10px;
