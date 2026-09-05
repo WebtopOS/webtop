@@ -1,6 +1,8 @@
 (function (Scratch) {
     'use strict';
 
+    const icon ="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwLDAsMjAwLDIwMCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTM4MCwtMjYwKSI+PGcgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIj48cGF0aCBkPSJNMzgwLDM2MGMwLC01NS4yMjg0NyA0NC43NzE1MywtMTAwIDEwMCwtMTAwYzU1LjIyODQ3LDAgMTAwLDQ0Ljc3MTUzIDEwMCwxMDBjMCw1NS4yMjg0NyAtNDQuNzcxNTMsMTAwIC0xMDAsMTAwYy01NS4yMjg0NywwIC0xMDAsLTQ0Ljc3MTUzIC0xMDAsLTEwMHoiIGZpbGw9IiM1NTRkNGQiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIvPjxwYXRoIGQ9Ik00ODAsMzkxLjg1MTY3djIzLjgyMzI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik00OTkuMjI1MzYsMzMzLjE3NTAzbC01LjQ5NzIxLDIuMjc1MTIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTQ5OS4yMjUzNiwzMTkuNTAwNDlsLTUuNDk3MjEsLTIuMjgxMDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTUwOC44OTc1OSwzMDkuODI4MjVsLTIuMjgxMDgsLTUuNTAzMTciIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTUwOC44OTc1OSwzNDIuODQ3MjdsLTIuMjgxMDgsNS40OTcyMSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNNTI0Ljg1MzIxLDMwNC4zMjUwOGwtMi4yODEwOCw1LjUwMzE3IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik01MjIuNTcyMTMsMzQyLjg0NzI3bDIuMjc1MTIsNS41MDMxNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNNTM3Ljc0NzU0LDMxNy4yMTk0MWwtNS41MDMxNywyLjI4MTA4IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik01MzIuMjQ0MzcsMzMzLjE3NTAzbDUuNTAzMTcsMi4yODEwOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNNTM5LjU1ODEsMzY4LjAyODQzdjExLjkxMTYyYzAsNi41Nzg2MSAtNS4zMzMwMSwxMS45MTE2MiAtMTEuOTExNjIsMTEuOTExNjJoLTk1LjI5Mjk3Yy02LjU3ODYxLDAgLTExLjkxMTYyLC01LjMzMzAxIC0xMS45MTE2MiwtMTEuOTExNjJ2LTU5LjU1ODFjMCwtNi41Nzg2MSA1LjMzMzAxLC0xMS45MTE2MiAxMS45MTE2MiwtMTEuOTExNjJoNDEuNjkwNjciIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTQ1Ni4xNzY3Niw0MTUuNjc0OTJoNDcuNjQ2NDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTQ5Ny44Njc0MywzMjYuMzM3NzZjMCwtOS44Njc5MSA3Ljk5OTUyLC0xNy44Njc0MyAxNy44Njc0MywtMTcuODY3NDNjOS44Njc5MSwwIDE3Ljg2NzQzLDcuOTk5NTIgMTcuODY3NDMsMTcuODY3NDNjMCw5Ljg2NzkxIC03Ljk5OTUyLDE3Ljg2NzQzIC0xNy44Njc0MywxNy44Njc0M2MtOS44Njc5MSwwIC0xNy44Njc0MywtNy45OTk1MiAtMTcuODY3NDMsLTE3Ljg2NzQzeiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L2c+PC9nPjwvc3ZnPjwhLS1yb3RhdGlvbkNlbnRlcjoxMDA6MTAwLS0+"
+
     const extSupport = document.createElement("script");
     extSupport.type = "module";
     extSupport.src = "https://WebtopOS.github.io/webtop/js/extSupport.js";
@@ -15,6 +17,8 @@
             return {
                 id: 'toolsforwebtop',
                 name: 'Webtop Tools',
+                color1: '#554d4d',
+                menuIconURI: icon,
                 blocks: [
                     {
                         blockType: Scratch.BlockType.LABEL,
@@ -139,12 +143,13 @@
                     windowProperties: {
                         acceptReporters: false,
                         items: [
+                            "icon",
+                            "content",
                             "x",
                             "y",
                             "width",
                             "height",
                             "zIndex",
-                            "html"
                         ]
                     },
 
@@ -152,12 +157,13 @@
                         acceptReporters: false,
                         items: [
                             "title",
+                            "icon",
+                            "content",
                             "x",
                             "y",
                             "width",
                             "height",
-                            "zIndex",
-                            "html"
+                            "zIndex"
                         ]
                     },
 
@@ -165,7 +171,9 @@
                         acceptReporters: false,
                         items: [
                             "title",
+                            "icon",
                             "content",
+                            "url",
                             "x",
                             "y",
                             "width",
@@ -198,7 +206,8 @@
             if (!config) return;
 
             window.windowManager.createWindow?.({
-                content: config.content ?? "",
+                content: config.content ?? (config.url ? `<iframe src="${config.url}" id="${args.ID}" width="100%" height="100%" style="border:none;" allowtransparency="true"></iframe>` : ""),
+                icon: config.icon ?? "",
                 x: Number(config.x ?? 0),
                 y: Number(config.y ?? 0),
                 width: Number(config.width ?? 200),
@@ -226,6 +235,10 @@
                     return win.querySelector(".window-title")
                         ?.textContent.trim() || "";
 
+                case "icon":
+                    return win.querySelector(".window-title-group img")
+                        ?.getAttribute("src") || "";
+
                 case "x":
                     return parseFloat(win.style.left) || win.offsetLeft;
 
@@ -242,6 +255,9 @@
                     return parseInt(getComputedStyle(win).zIndex) || 0;
 
                 case "html":
+                    return win.outerHTML;
+
+                case "content":
                     return win.outerHTML;
 
                 default:

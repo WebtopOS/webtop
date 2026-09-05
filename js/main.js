@@ -180,7 +180,6 @@ document.querySelectorAll('.start-icon').forEach(icon => {
         title: title,
         icon: imgSrc,
         content: `<iframe src="${url}" id="${id}" width="100%" height="100%" style="border:none;" allowtransparency="true"></iframe>`,
-        icon: imgSrc,
         x: 200,
         y: 150,
         width: width,
