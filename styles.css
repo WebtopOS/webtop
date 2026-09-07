@@ -492,12 +492,13 @@
           overflow-y: auto;
           font: 15px Verdana, sans-serif;
           box-sizing: border-box;
-
+          bottom: 48px;
           background: var(--glass-dark-alt);
           border: 1px solid var(--border);
           z-index: 9999;
           border-radius: 14px 14px 14px 14px;
           padding: 10px;
+          box-shadow: none;
         }
 
         .ctxmenu li {
