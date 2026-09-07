@@ -74,6 +74,16 @@ taskButton.appendChild(appLabel);
 
 this.taskList.appendChild(taskButton);
 
+window.parent.ctxmenu.attach('#app-button', [
+  {
+    text: 'close',
+    action: (e) => {
+      console.log('Remove clicked for:', title);
+      closeWindow(id);
+    }
+  }
+]);
+
     const windowData = {
       element: winEl,
       taskButton,
