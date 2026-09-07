@@ -1,5 +1,9 @@
 import { WindowManager } from './windowManager.js';
 
+window.parent.document.body.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+});
+
 const windowManager = new WindowManager();
 
 window.getAccent = function (rgbaInput) {
