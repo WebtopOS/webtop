@@ -57,7 +57,8 @@ export class WindowManager {
   }
 
 const taskButton = window.parent.document.createElement('button');
-taskButton.className = 'task-button';
+const uniqueClass = `task-button-${id}`;
+taskButton.className = `task-button ${uniqueClass}`;
 taskButton.id = 'app-button';
 
 if (icon) {
@@ -74,7 +75,7 @@ taskButton.appendChild(appLabel);
 
 this.taskList.appendChild(taskButton);
 
-window.parent.ctxmenu.attach(taskButton, [
+window.parent.ctxmenu.attach(`.${uniqueClass}`, [
   {
     text: 'close',
     action: (e) => {
