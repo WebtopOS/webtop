@@ -78,8 +78,10 @@ window.parent.ctxmenu.attach('#app-button', [
   {
     text: 'close',
     action: (e) => {
-      console.log('Remove clicked for:', title);
-      closeWindow(id);
+    const win = this.windows.get(id);
+    win.element.remove();
+    win.taskButton.remove();
+    this.windows.delete(id);
     }
   }
 ]);
