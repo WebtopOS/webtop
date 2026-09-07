@@ -74,7 +74,7 @@ taskButton.appendChild(appLabel);
 
 this.taskList.appendChild(taskButton);
 
-window.parent.ctxmenu.attach('#app-button', [
+window.parent.ctxmenu.attach(taskButton, [
   {
     text: 'close',
     action: (e) => {
