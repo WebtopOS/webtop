@@ -490,7 +490,8 @@
           position: fixed;
           margin: 0;
           overflow-y: auto;
-          font: 15px Verdana, sans-serif;
+          font: 12px;
+          color: var(--text-dim);
           box-sizing: border-box;
           bottom: 48px;
           background: var(--glass-dark-alt);
