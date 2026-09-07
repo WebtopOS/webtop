@@ -497,7 +497,7 @@
           border: 1px solid var(--border);
           z-index: 9999;
           border-radius: 14px 14px 14px 14px;
-          padding: 10px;
+          padding: 2px 0px;
           box-shadow: none;
         }
 
