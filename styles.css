@@ -291,11 +291,13 @@
         .start-icon svg {
           height: 32px;
           width: auto;
+          border-radius: 6px;
         }
 
         .start-icon img {
           height: 32px;
           width: auto;
+          border-radius: 6px;
         }
 
         .start-icon:hover {
